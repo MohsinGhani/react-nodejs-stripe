@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `Credential Setup`
+
+Create a new .env file on root folder which should have Stripe Public and Private Key
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
