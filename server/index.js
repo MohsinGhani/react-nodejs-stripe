@@ -8,6 +8,49 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
+app.get('/get-products', (req, res) => {
+    stripe.products.list(
+        { limit: 3 },
+        function (err, products) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(products)
+            }
+        }
+    );
+})
+
+app.get('/get-prices', (req, res) => {
+    stripe.prices.list(
+        null,
+        function (err, prices) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(prices)
+            }
+        }
+    );
+})
+
+app.get('/get-product-prices', (req, res) => {
+    // console.log(req)
+    console.log(req.query.productId)
+    stripe.prices.list(
+        { product: req.query.productId },
+        function (err, prices) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(prices)
+            }
+        }
+    );
+})
 
 app.post('/create-customer', async (req, res) => {
     // Create a new customer object
